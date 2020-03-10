@@ -1,0 +1,270 @@
+set $mod Mod1
+set $terminal kitty
+# set $terminal urxvt
+
+font pango:DejaVu Sans Mono 14
+font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
+font pango:Terminus 11px
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec $terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+	# start bemenu (a program launcher)
+	bindsym $mod+d exec bemenu-run -n -H 30 --fn "Fira Code 13px" --fb=#64727D --tb=#0e1626 --tf=#ffffff --nb=#64727D --hb=#0e1626 --hf=#ffffff -p "Search Term:"
+
+	# change focus
+	bindsym $mod+h focus left
+	bindsym $mod+j focus down
+	bindsym $mod+k focus up
+	bindsym $mod+l focus right
+
+	# alternatively, you can use the cursor keys:
+	bindsym $mod+Left focus left
+	bindsym $mod+Down focus down
+	bindsym $mod+Up focus up
+		bindsym $mod+Right focus right
+
+	# move focused window
+	bindsym $mod+Shift+h move left
+	bindsym $mod+Shift+j move down
+	bindsym $mod+Shift+k move up
+	bindsym $mod+Shift+l move right
+	#bindsym $mod+Shift+odiaeresis move right
+
+	# alternatively, you can use the cursor keys:
+	bindsym $mod+Shift+Left move left
+	bindsym $mod+Shift+Down move down
+	bindsym $mod+Shift+Up move up
+	bindsym $mod+Shift+Right move right
+
+	# split in horizontal orientation
+	bindsym $mod+Shift+v split h
+
+	# split in vertical orientation
+	bindsym $mod+v split v
+
+	# enter fullscreen mode for the focused container
+	bindsym $mod+f fullscreen toggle
+
+	# change container layout (stacked, tabbed, toggle split)
+	bindsym $mod+s layout stacking
+	bindsym $mod+w layout tabbed
+	bindsym $mod+e layout toggle split
+
+	# toggle tiling / floating
+	bindsym $mod+Shift+space floating toggle
+
+	# change focus between tiling / floating windows
+	bindsym $mod+space focus mode_toggle
+
+	# focus the parent container
+	bindsym $mod+a focus parent
+
+	# focus the child container
+	#bindsym $mod+d focus child
+
+	# Define names for default workspaces for which we configure key bindings later on.
+	set $ws1 1
+	set $ws2 2
+	set $ws3 3
+	set $ws4 4
+	set $ws5 5
+	set $ws6 6
+	set $ws7 7
+	set $ws8 8
+	set $ws9 9
+	set $ws10 10
+
+	# switch to workspace
+	bindsym $mod+1 workspace $ws1
+	bindsym $mod+2 workspace $ws2
+	bindsym $mod+3 workspace $ws3
+	bindsym $mod+4 workspace $ws4
+	bindsym $mod+5 workspace $ws5
+	bindsym $mod+6 workspace $ws6
+	bindsym $mod+7 workspace $ws7
+	bindsym $mod+8 workspace $ws8
+	bindsym $mod+9 workspace $ws9
+	bindsym $mod+0 workspace $ws10
+
+	# move focused container to workspace
+	bindsym $mod+Shift+1 move container to workspace $ws1
+	bindsym $mod+Shift+2 move container to workspace $ws2
+	bindsym $mod+Shift+3 move container to workspace $ws3
+	bindsym $mod+Shift+4 move container to workspace $ws4
+	bindsym $mod+Shift+5 move container to workspace $ws5
+	bindsym $mod+Shift+6 move container to workspace $ws6
+	bindsym $mod+Shift+7 move container to workspace $ws7
+	bindsym $mod+Shift+8 move container to workspace $ws8
+	bindsym $mod+Shift+9 move container to workspace $ws9
+	bindsym $mod+Shift+0 move container to workspace $ws10
+
+	# reload the configuration file
+	bindsym $mod+Shift+c reload
+	# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+	bindsym $mod+Shift+r restart
+	# exit i3 (logs you out of your X session)
+	bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit Sway?' -b 'Yes, exit Sway' 'swaynag exit'"
+
+	# resize window (you can also use the mouse for that)
+	bindsym $mod+r mode "resize"
+	mode "resize" {
+		bindsym h resize shrink width 10 px or 10 ppt
+		bindsym j resize grow height 10 px or 10 ppt
+		bindsym k resize shrink height 10 px or 10 ppt
+		bindsym l resize grow width 10 px or 10 ppt
+
+		# same bindings, but for the arrow keys
+		bindsym Left resize shrink width 10 px or 10 ppt
+		bindsym Down resize grow height 10 px or 10 ppt
+		bindsym Up resize shrink height 10 px or 10 ppt
+		bindsym Right resize grow width 10 px or 10 ppt
+
+		# back to normal: Enter or Escape or $mod+r
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+		bindsym $mod+r mode "default"
+	}
+
+
+
+	############################################
+	# ------------------------------------------
+	# ~~~~~~~~~~~~~~~*. Custom .*~~~~~~~~~~~~~~~ 
+	# ------------------------------------------
+	############################################
+
+	input * tap enabled
+	xwayland disable
+
+	# Appearance
+	default_floating_border none
+	floating_maximum_size 800 x 600
+	floating_minimum_size 500 x 300
+	default_border pixel 1 
+	gaps inner 0
+	gaps outer 0
+	output * background ~/.config/lock.jpg fill
+
+	workspace $ws1 output primary
+
+	# Colors:
+	set $grey	#404040
+	set $darkgrey	#000d18
+	set $green	#82a282
+	set $orange	#ffcfaf
+	set $earth	#e3ceab
+	set $red	#dca3a3
+	set $trans	#00000000
+	set $black	#1d2021
+	set $darkblack	#282828
+	set $white	#ffffff
+	set $blue	#64727d
+	set $darkblue	#2b303b
+
+	#                       BORDER      BACKGROUND  TEXT        INDICATOR   CHILD_BORDER
+	client.focused          $trans      $darkgrey   $earth      $darkblue  	$darkblue
+	client.unfocused        $trans      $white      $trans      $trans      $trans
+	client.focused_inactive $trans      $white      $trans      $trans      $trans
+	client.urgent           $red        $red        $black      $red    	$red
+	client.background       $trans
+
+	assign [class="^Steam$" title="^Steam - Self Updater$"] $ws10
+	# assign [class="(?i)steam" title="^Friends\\ List$"]	$ws2
+	# assign [class="(?i)firefox"]	$ws1
+	# assign [class="(?i)steam"]	$ws1
+	assign [class="(?i)xfreerdp" title="^RDP$"]	$ws8
+	assign [class="(?i)xfreerdp"]	$ws9
+
+	# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+	for_window [class="^Steam$" title="Steam - News"] floating enable, border none
+	for_window [class="^Steam$" title=".* - Chat"] floating enable, border none
+	for_window [class="^Steam$" title="^Settings$"] floating enable, border none
+	for_window [class="^Steam$" title=".* - event started"] floating enable, border none
+	for_window [class="^Steam$" title=".* CD key"] floating enable, border none
+	for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable, border none
+	for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable, border none
+	for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable, border none
+	for_window [title="^Steam Keyboard$"] floating enable, border none
+	for_window [title="^ranger"] floating enable, border none
+	for_window [title="^mpd"] floating enable, border none
+	for_window [title="^vimpc"] floating enable, border none
+	for_window [title="^wlan"] floating enable, border none
+	for_window [class="^xfreerdp"] fullscreen enable
+	for_window [class="popup"] floating enable, border none
+
+	# toggle mode to kill and activate programs like picom, xautolock, etc.
+	set $mode_toggle toggle
+	bindsym $mod+Control+t mode "$mode_toggle"
+	mode "$mode_toggle" {
+		bindsym b mode "default", exec --no-startup-id $HOME/.config/scripts/toggle_prog.sh bluetooth
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+}
+
+# Power Menu for shutdown, restart, suspend, etc.
+bindsym mod4+l exec --no-startup-id swaylock
+set $mode_power power
+bindsym $mod+Control+l mode "$mode_power"
+mode "$mode_power" {
+    bindsym l mode "default", exec swaylock
+    bindsym e mode "default", exec swaymsg exit
+    bindsym s mode "default", exec systemctl suspend
+    bindsym h mode "default", exec systemctl hibernate
+    bindsym r mode "default", exec systemctl reboot
+    bindsym p mode "default", exec systemctl poweroff
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_dom DOM
+bindsym $mod+Control+d mode "$mode_dom"
+mode "$mode_dom" {
+    bindsym g mode "default", exec --no-startup-id ggfrprog
+    bindsym r mode "default", exec --no-startup-id rdp
+    bindsym k mode "default", exec --no-startup-id /usr/local/bin/kdg
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_progs PROGS
+bindsym $mod+Control+p mode "$mode_progs"
+mode "$mode_progs" {
+    bindsym d mode "default", exec --no-startup-id $terminal -T ranger -o background_opacity=1.0 ranger
+    bindsym m mode "default", exec --no-startup-id $terminal -o window_padding_width=0 vimpc
+    bindsym n mode "default", exec --no-startup-id $terminal -o window_padding_width=0 neomutt
+    bindsym w mode "default", exec --no-startup-id $terminal -T wlan iwctl
+    bindsym t mode "default", exec --no-startup-id teamspeak3
+    bindsym f mode "default", exec --no-startup-id firefox
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym Print exec scrot -u $HOME/scrots/'%Y-%m-%d_%H:%M:%S_screenshot_active.png'
+bindsym --release Shift+Print exec scrot -fs $HOME/scrots/'%Y-%m-%d_%H:%M:%S_screenshot_selection.png' -e 'feh $f'
+bindsym --release Control+Print exec scrot $HOME/scrots/'%Y-%m-%d_%H:%M:%S_screenshot_whole.png' 
+bindsym $mod+p exec passmenu
+
+# Move whole workspace to other output
+bindsym $mod+Shift+Control+h move workspace to output left
+bindsym $mod+Shift+Control+Left move workspace to output left
+bindsym $mod+Shift+Control+l move workspace to output right
+bindsym $mod+Shift+Control+Right move workspace to output right
+
+# Placeholder for temporary command
+bindsym $mod+Control+Shift+e exec bash < /home/nonce/.config/temp_command
+
+# Dismiss mako notifications
+bindsym Control+Space exec makoctl dismiss
+bindsym Control+Shift+Space exec makoctl dismiss -a
+
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"
+
+workspace $ws1

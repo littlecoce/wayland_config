@@ -1,0 +1,18 @@
+font=Fira Code 10
+border-radius=5
+ignore-timeout=1
+
+[urgency=normal]
+background-color=#0e1626
+border-color=#64727d
+default-timeout=3000
+
+[urgency=low]
+background-color=#0e16267f
+border-color=#64727d7f
+default-timeout=1000
+
+[urgency=high]
+border-color=#0e1626F0
+background-color=#A60000F0
+default-timeout=0

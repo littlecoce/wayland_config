@@ -1,0 +1,9 @@
+[Unit]
+	Description=Waybar Status bar
+	PartOf=graphical-session.target
+
+[Service]
+	ExecStart=/usr/bin/waybar
+
+[Install]
+	WantedBy=sway-session.target

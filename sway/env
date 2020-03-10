@@ -1,0 +1,1 @@
+BEMENU_OPTS='-n -H 30 --fn "Fira Code 13px" --fb=#23262c --tb=#0e1626 --tf=#ffffff --nb=#23262c --hb=#0e1626 --hf=#ffffff -p "Search Term:"'
